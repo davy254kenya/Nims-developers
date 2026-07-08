@@ -1,0 +1,19 @@
+# ============================================
+# Nim Developers — clean URL routing
+# Makes yoursite.com/about, /services, /contact
+# all load index.html, so the JS router can take
+# over and show the right page on direct load.
+# ============================================
+
+RewriteEngine On
+
+# If the request is NOT for a real file or folder that exists...
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# ...serve index.html instead (the router reads the URL and shows the right page)
+RewriteRule ^ index.html [L]
+
+# Optional: force www or non-www / https — uncomment and edit if your host needs it
+# RewriteCond %{HTTPS} off
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
